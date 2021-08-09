@@ -1,6 +1,3 @@
-n = int(input())
-
-if(n%5 == 0 or (n-2)%5 == 0):
-	print("CY")
-else:
-	print("SK")
+numbers = [6, 10, 2]
+numbers.sort(key = lambda x : str(x)[0])
+print(numbers)
