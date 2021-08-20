@@ -1,5 +1,4 @@
 
-
 n = int(input())
 jump = []
 for _ in range(n-1):
