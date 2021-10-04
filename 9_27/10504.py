@@ -8,8 +8,10 @@ for _ in range(t):
 	for m in range(2, n):
 		now = n
 		now -= (m*(m+1))//2
+		
 		if(now < 0):
 			break
+
 		if(now % m == 0):
 			flag = False
 			print(n, end="")
