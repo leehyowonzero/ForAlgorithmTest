@@ -1,27 +1,17 @@
-s = list(input())
-q = []
-ans = ""
-
-for el in s:
-	if(el.isalpha()):
-		ans += el
-	else:
-		if el == '(': q.append(el)
-		
-		elif el == '*' or el == '/': 
-			while q and (q[-1] == '*' or q[-1] =='/'): 
-				ans += q.pop() 	
-			q.append(el)
-		elif el == '+' or el == '-': 
-			while q and q[-1] != '(': 
-				ans+= q.pop() 
-			q.append(el)
-		elif el == ')': 
-			while q and q[-1] != '(': 
-				ans += q.pop() 
-			q.pop()
-
-while q : 
-	ans+=q.pop() 
-
-print(ans)
+string = list(x for x in input())
+fm = 0 
+to = len(string)
+answer = ""
+while(1):
+	for i in range(fm , to):
+		if(fm == i):
+			selected = string[i]
+			idx = i
+		else:
+			if(selected > string[i]):
+				selected = string[i]
+				idx = i
+	answer += selected
+	fm = idx
+	
+	print(answer)
