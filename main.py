@@ -1,19 +1,24 @@
-import sys
 import heapq
-input=sys.stdin.readline
+import sys
+input = sys.stdin.readline
 
-n, t, p=map(int, input().split())
-a=list(map(int, input().split()))
+n = int(input())
 
-ans=0; pq=[]; sel=0; cnt=0
-for i in range(min(n, t//p+1)):
-    sel+=a[i]
-    heapq.heappush(pq, -a[i])
-    while t-i*p<sel:
-        sel+=heapq.heappop(pq)
-        cnt+=1
-    ans=max(ans, i-cnt+1)
+left = []
+right = []
 
-print(ans)
-
-## 구글링 100% 이해완료...
+for _ in range(n):
+	x = int(input())
+	if(len(left) == len(right)):
+		heapq.heappush(left,x)
+	else:
+		heapq.heappush(right,-x) # 음수로 넣기
+	
+	if(len(left) >= 1 and len(right) >= 1):
+		if(left[0] > right[0]*-1):
+			heapq.heappush(right,-heapq.heappop(left))
+			heapq.heappush(left,-heapq.heappop(right))
+	ans = heapq.heappop(left)
+	print(ans)
+	heapq.heappush(left,ans)
+	

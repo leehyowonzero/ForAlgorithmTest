@@ -15,7 +15,7 @@ def bfsforfox():
 			continue
 		
 		for nextnode, dist in node[now]:
-			w = cur_distance + dist
+			w = cur_distance + dist*2
 			if(w < distance[nextnode]):
 				distance[nextnode] = w
 				heapq.heappush(heap,(w, nextnode))
@@ -38,12 +38,12 @@ def bfsforwolf():
 			continue
 		for nextnode, dist in node[now]:
 			if(movetime == 0):
-				w = cur_distance + dist//2
+				w = cur_distance + dist
 				if(w < distance[nextnode][0]):
 					distance[nextnode][0] = w
 					heapq.heappush(heap,(w, nextnode, 1))
 			else:
-				w = cur_distance + dist*2
+				w = cur_distance + dist*4
 				if(w < distance[nextnode][1]):
 					distance[nextnode][1] = w
 					heapq.heappush(heap,(w, nextnode, 0))
@@ -55,8 +55,8 @@ n, m = map(int,input().split())
 node = [[] for _ in range(n+1)]
 for _ in range(m):
 	a, b, d = map(int,input().split())
-	node[a].append([b,2*d])
-	node[b].append([a,2*d])
+	node[a].append([b,d])
+	node[b].append([a,d])
 foxtime = bfsforfox()
 # print(foxtime)
 wolftime = bfsforwolf()
