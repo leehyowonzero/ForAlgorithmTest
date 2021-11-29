@@ -1,28 +1,24 @@
-while(True):
-	try:
-		x = int(input())
-		n = int(input())
-		arr = []
-		for _ in range(n):
-			arr.append(int(input()))
-		if(n == 0 or n == 1):
-			print("danger")
+n = int(input())
+stack = []
+ans = 0
+for i in range(n):
+	# print(stack)
+	# print(ans)
+	nowinput = [0,1]
+	nowinput[0] = int(input())
+	while stack:
+		if(stack[-1][0] < nowinput[0]):
+			stack.pop()
+			ans += 1
+		elif(stack[-1][0] == nowinput[0]):
+			ans += stack[-1][1]
+			nowinput[1] += stack[-1][1]
+			break
 		else:
-			x = x * 10000000
-			arr.sort()
-			leftidx = 0
-			rightidx = n-1
-			while(leftidx <= rightidx):
-				if(leftidx == rightidx):
-					print("danger")
-					break
-				if(arr[leftidx] + arr[rightidx] == x):
-					print("yes", arr[leftidx], arr[rightidx])
-					break
-				elif(arr[leftidx] + arr[rightidx] > x):
-					rightidx -= 1
-				else:
-					leftidx += 1
-				
-	except:
-		break
+			nowinput[1] += 1
+			ans += 1
+			break
+	stack.append(nowinput)
+	# print(stack)
+	# print("답",ans)
+print(ans)
