@@ -1,7 +1,6 @@
 import heapq
 
 def solution(operations):
-    answer = []
     maxq = []
     minq = []
     visited = dict()
